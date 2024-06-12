@@ -18,6 +18,7 @@ public class CarrinhoDeCompras {
     public void removerItem(Produto produto) {
         itens.remove(produto);
     }
+
     public void listarItens(){
         for (Produto produto : itens) {
             System.out.println(produto.exibirDetalhes());
@@ -37,6 +38,7 @@ public class CarrinhoDeCompras {
     }
     public void gerarArquivoTexto(String nomeArquivo) throws IOException {
         File file = new File(nomeArquivo);
+
         file.createNewFile();
 
         FileWriter fw = new FileWriter(file.getAbsoluteFile());

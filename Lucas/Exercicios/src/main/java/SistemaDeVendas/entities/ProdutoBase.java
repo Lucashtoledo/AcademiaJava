@@ -20,32 +20,35 @@ public abstract class ProdutoBase implements Produto{
 
     @Override
     public String getNome() {
-        return "";
+
+        return nome;
     }
 
     @Override
     public double getPreco() {
-        return 0;
+
+        return preco;
     }
 
     @Override
     public void setNome(String nome) {
-
+        this.nome = nome;
     }
 
     @Override
     public void setPreco(double preco) {
-
+        this.preco = preco;
     }
 
     @Override
     public void setQuantidade(int quantidade) {
-
+        this.quantidade = quantidade;
     }
 
     @Override
     public int getQuantidade() {
-        return 0;
+
+        return quantidade;
     }
 
     @Override

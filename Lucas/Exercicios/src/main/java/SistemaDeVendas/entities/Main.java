@@ -11,6 +11,11 @@ public class Main {
 
         carrinho2.adicionarItem(new Eletronico("Microondas", 840.00, 1, 12));
         carrinho2.adicionarItem(new Roupa("Calça", 220.00, 2, "M", "Preto"));
+
+        carrinho1.listarItens();
+        System.out.println();
+        carrinho2.listarItens();
+
     }
 
 }
