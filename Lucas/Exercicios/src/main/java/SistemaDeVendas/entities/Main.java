@@ -16,6 +16,8 @@ public class Main {
         System.out.println();
         carrinho2.listarItens();
 
+        carrinho1.gerarArquivoTexto("Arquivo1");
+        carrinho2.gerarArquivoTexto("Arquivo2");
     }
 
 }

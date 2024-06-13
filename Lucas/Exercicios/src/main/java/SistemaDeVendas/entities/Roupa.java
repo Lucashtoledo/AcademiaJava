@@ -39,6 +39,6 @@ public class Roupa extends ProdutoBase {
                 + ", preço: " + getPreco()
                 + ", quantidade: " + getQuantidade()
                 + ", tamanho= " + tamanho
-                + ", cor= " + cor;
+                + ", cor= " + cor +"\n";
     }
 }

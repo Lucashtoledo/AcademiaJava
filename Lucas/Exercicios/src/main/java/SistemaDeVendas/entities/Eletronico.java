@@ -29,6 +29,6 @@ public class Eletronico extends ProdutoBase{
         return "Nome: " + getNome()
                 + ", preço: " + getPreco()
                 + ", quantidade: " + getQuantidade()
-                + ", Meses de Garantia: " + getGarantiaMeses();
+                + ", Meses de Garantia: " + getGarantiaMeses() +"\n";
     }
 }

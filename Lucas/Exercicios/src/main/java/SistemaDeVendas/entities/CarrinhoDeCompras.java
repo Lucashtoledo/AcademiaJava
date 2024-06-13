@@ -20,8 +20,11 @@ public class CarrinhoDeCompras {
     }
 
     public void listarItens(){
+        int count = 0;
+        System.out.println("item:     Qtd:     nome:     Preço:     SubTotal:");
         for (Produto produto : itens) {
-            System.out.println(produto.exibirDetalhes());
+            count ++;
+            System.out.printf("%d          %d       %s     %.2f      %.2f\n", count, produto.getQuantidade(), produto.getNome(),  produto.getPreco(), produto.getQuantidade() * produto.getPreco());
         }
     }
 
@@ -36,20 +39,17 @@ public class CarrinhoDeCompras {
         }
         return total;
     }
-    public void gerarArquivoTexto(String nomeArquivo) throws IOException {
-        File file = new File(nomeArquivo);
+    public void gerarArquivoTexto(String nomeArquivo) {
 
-        file.createNewFile();
+        try(BufferedWriter bw = new BufferedWriter(new FileWriter(nomeArquivo))){
+            for (Produto produto : itens) {
+                bw.write(produto.exibirDetalhes());
+            }
 
-        FileWriter fw = new FileWriter(file.getAbsoluteFile());
-
-        BufferedWriter bw = new BufferedWriter(fw);
-
-        for (Produto produto : itens) {
-            bw.write(produto.exibirDetalhes());
+        } catch (IOException e) {
+            System.out.println("Erro" + e.getMessage() + "ao gerar arquivo " + nomeArquivo);
         }
-        bw.write(String.format("\nTotal: %.2f", calcularTotal()));
-        bw.close();
         System.out.println("Arquivo gerado com sucesso!");
+
     }
 }

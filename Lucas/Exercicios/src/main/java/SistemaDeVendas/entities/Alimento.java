@@ -27,6 +27,6 @@ public class Alimento extends ProdutoBase{
         return "Nome: " + getNome()
                 + ", preço: " + getPreco()
                 + ", quantidade: " + getQuantidade()
-                + ", data de validade= " + dataValidade;
+                + ", data de validade= " + dataValidade +"\n";
     }
 }
