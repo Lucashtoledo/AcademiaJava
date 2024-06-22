@@ -1,110 +1,110 @@
 CREATE TABLE atores(
-	cod_ator serial primary key,
-	nome varchar(60)
+cod_ator serial primary key,
+nome varchar(60)
 );
 
 
 CREATE TABLE enderecos(
-	cod_end serial primary key,
-	logradouro varchar(40) not null,
-	tipo_log varchar(40) not null,
-	complemento varchar(20),
-	cidade varchar(60) not null,
-	uf varchar(8) not null,
-	cep varchar(8),
-	numero varchar(10),
-	bairro varchar(60) not null
+cod_end serial primary key,
+logradouro varchar(40) not null,
+tipo_log varchar(40) not null,
+complemento varchar(20),
+cidade varchar(60) not null,
+uf varchar(8) not null,
+cep varchar(8),
+numero varchar(10),
+bairro varchar(60) not null
 );
 
 
 CREATE TABLE profissoes(
-	cod_prof serial primary key,
-	nome varchar(60) not null
+cod_prof serial primary key,
+nome varchar(60) not null
 );
 
 
 CREATE TABLE generos(
-	cod_gen serial primary key,
-	nome varchar(60) not null
+cod_gen serial primary key,
+nome varchar(60) not null
 );
 
 
 CREATE TABLE categorias(
-	cod_cat serial primary key,
-	nome varchar(60) not null,
-	valor money not null
+cod_cat serial primary key,
+nome varchar(60) not null,
+valor money not null
 );
 
 CREATE TABLE clientes(
-	cod_cli serial primary key,
-	cpf varchar(11) not null,
-	nome varchar(60) not null,
-	telefone varchar(10) not null,
-	fk_prof integer not null,
+cod_cli serial primary key,
+cpf varchar(11) not null,
+nome varchar(60) not null,
+telefone varchar(10) not null,
+fk_prof integer not null,
 
-	FOREIGN KEY (fk_prof) REFERENCES profissoes(cod_prof)
+FOREIGN KEY (fk_prof) REFERENCES profissoes(cod_prof)
 );
 
 CREATE TABLE locacoes(
-	cod_loc serial primary key,
-	data_loc date not null,
-	desconto money,
-	multa money,
-	sub_total money not null,
-	fk_cli integer not null,
+cod_loc serial primary key,
+data_loc date not null,
+desconto money,
+multa money,
+sub_total money not null,
+fk_cli integer not null,
 
-	FOREIGN KEY (fk_cli) REFERENCES clientes(cod_cli)
+FOREIGN KEY (fk_cli) REFERENCES clientes(cod_cli)
 );
 
 CREATE TABLE filmes(
-	cod_filme serial primary key,
-	titulo_original varchar(100) not null,
-	titulo varchar (100) not null,
-	quantidade integer,
-	fk_cat integer not null,
-	fk_gen integer not null,
+cod_filme serial primary key,
+titulo_original varchar(100) not null,
+titulo varchar (100) not null,
+quantidade integer,
+fk_cat integer not null,
+fk_gen integer not null,
 
-	FOREIGN KEY (fk_cat) REFERENCES categorias(cod_cat),
-	FOREIGN KEY (fk_gen) REFERENCES generos(cod_gen)
+FOREIGN KEY (fk_cat) REFERENCES categorias(cod_cat),
+FOREIGN KEY (fk_gen) REFERENCES generos(cod_gen)
 );
 
 CREATE TABLE dependentes(
-	fk_cli integer not null,
-	fk_dep integer not null,
-	parentesco varchar(20),
+fk_cli integer not null,
+fk_dep integer not null,
+parentesco varchar(20),
 
-	FOREIGN KEY (fk_cli) REFERENCES clientes(cod_cli),
-	FOREIGN KEY (fk_dep) REFERENCES clientes(cod_cli)
+FOREIGN KEY (fk_cli) REFERENCES clientes(cod_cli),
+FOREIGN KEY (fk_dep) REFERENCES clientes(cod_cli)
 );
 
 CREATE TABLE locacoes_filmes(
-	fk_loc integer not null,
-	fk_filme integer not null,
-	valor money,
-	num_dias integer,
-	data_devol date,
+fk_loc integer not null,
+fk_filme integer not null,
+valor money,
+num_dias integer,
+data_devol date,
 
-	FOREIGN KEY(fk_loc) REFERENCES locacoes(cod_loc),
-	FOREIGN KEY(fk_filme) REFERENCES filmes(cod_filme)
+FOREIGN KEY(fk_loc) REFERENCES locacoes(cod_loc),
+FOREIGN KEY(fk_filme) REFERENCES filmes(cod_filme)
 );
 
 CREATE TABLE filmes_atores(
-	fk_ator integer not null,
-	fk_filme integer not null,
-	ator varchar(2),
-	diretor varchar(2),
+fk_ator integer not null,
+fk_filme integer not null,
+ator varchar(2),
+diretor varchar(2),
 
-	FOREIGN KEY(fk_ator) REFERENCES atores(cod_ator),
-	FOREIGN KEY(fk_filme) REFERENCES filmes(cod_filme)
+FOREIGN KEY(fk_ator) REFERENCES atores(cod_ator),
+FOREIGN KEY(fk_filme) REFERENCES filmes(cod_filme)
 );
 
 CREATE TABLE cli_enderecos(
-	cod_cli_end serial primary key,
-	fk_end integer not null,
-	fk_cli integer not null,
+cod_cli_end serial primary key,
+fk_end integer not null,
+fk_cli integer not null,
 
-	FOREIGN KEY(fk_end) REFERENCES enderecos(cod_end),
-	FOREIGN KEY(fk_cli) REFERENCES clientes(cod_cli)
+FOREIGN KEY(fk_end) REFERENCES enderecos(cod_end),
+FOREIGN KEY(fk_cli) REFERENCES clientes(cod_cli)
 );
 
 drop table enderecos
@@ -133,6 +133,8 @@ VALUES ('Travessa dos Artistas', 'Travessa', 'Lote 10', 'Belo Horizonte', 'MG', 
 INSERT INTO enderecos (logradouro, tipo_log, complemento, cidade, uf, cep, numero, bairro)
 VALUES ('Rua das Palmeiras', 'Rua', 'Apartamento 301', 'Fortaleza', 'CE', '60175210', '301', 'Meireles');
 
+
+-- INSERTS
 
 INSERT INTO profissoes(nome) VALUES('caminhoneiro');
 INSERT INTO profissoes (nome) VALUES ('engenheiro');
@@ -217,6 +219,7 @@ INSERT INTO locacoes_filmes (fk_loc, fk_filme, valor, num_dias, data_devol) VALU
 INSERT INTO locacoes_filmes (fk_loc, fk_filme, valor, num_dias, data_devol) VALUES (27, 32, 50.00, 5, '2021-09-05');
 INSERT INTO locacoes_filmes (fk_loc, fk_filme, valor, num_dias, data_devol) VALUES (28, 33, 30.00, 3, '2021-09-06');
 
+
 INSERT INTO dependentes (fk_cli, fk_dep, parentesco) VALUES (8, 9, 'Filho');
 INSERT INTO dependentes (fk_cli, fk_dep, parentesco) VALUES (10, 11, 'Filha');
 INSERT INTO dependentes (fk_cli, fk_dep, parentesco) VALUES (13, 14, 'Cônjuge');
@@ -248,18 +251,118 @@ INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (4, 30, 'S');
 INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (5, 31, 'N');
 INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (1, 32, 'N');
 INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (2, 33, 'N');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (6, 19, 'S');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (7, 19, 'S');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (6, 20, 'S');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (7, 20, 'S');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (6, 22, 'S');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (7, 22, 'S');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (6, 23, 'S');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (7, 23, 'S');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (6, 24, 'S');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (7, 24, 'S');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (6, 25, 'S');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (7, 25, 'S');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (6, 26, 'N');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (7, 26, 'N');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (6, 27, 'N');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (7, 27, 'N');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (6, 28, 'N');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (7, 28, 'N');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (6, 29, 'N');
+INSERT INTO filmes_atores (fk_ator, fk_filme, ator) VALUES (7, 29, 'N');
 
-select * from atores
-select * from enderecos
-select * from profissoes
-select * from generos
-select * from categorias
-select * from clientes
-select * from locacoes
-select * from filmes
-select * from dependentes
-select * from filmes_atores
-select * from cli_enderecos
-select * from locacoes_filmes
+-- SELECTS
+
+-- 1 - Listar todos os filmes alugados por um cliente específico, incluindo a data de locação e a data de devolução.
+SELECT locacoes_filmes.data_devol, locacoes.data_loc, clientes.nome FROM locacoes_filmes
+INNER JOIN locacoes ON locacoes_filmes.fk_loc = locacoes.cod_loc
+INNER JOIN clientes ON clientes.cod_cli = locacoes.fk_cli
+WHERE locacoes.fk_cli = 8
+
+-- 2  - Obter uma lista de clientes e seus dependentes.
+
+SELECT clientes.nome, dependentes.parentesco FROM clientes
+INNER JOIN dependentes ON clientes.cod_cli = dependentes.fk_dep or clientes.cod_cli = dependentes.fk_cli
+WHERE clientes.cod_cli = 9
+
+-- 3  - Listar todos os filmes de um determinado gênero.
+
+SELECT filmes.titulo, generos.nome FROM filmes
+INNER JOIN generos ON filmes.fk_gen = generos.cod_gen
+WHERE generos.cod_gen = 3
+
+-- 4  - Exibir todos os clientes que têm uma profissão específica.
+
+SELECT clientes.nome, profissoes.nome FROM clientes
+INNER JOIN profissoes ON clientes.fk_prof = profissoes.cod_prof
+WHERE profissoes.cod_prof = 2
+
+-- 5  - Encontrar todos os filmes em uma categoria específica com quantidade disponível maior que 5.
+
+SELECT filmes.titulo, categorias.nome FROM filmes
+INNER JOIN categorias ON filmes.fk_cat = categorias.cod_cat
+WHERE categorias.cod_cat = 1 and filmes.quantidade > 4 -- Não incluí nenhum com mais de 5 --
+
+-- 6  - Listar todos os atores que participaram de filmes com um determinado título.
+
+SELECT atores.nome FROM filmes_atores
+INNER JOIN atores ON atores.cod_ator = filmes_atores.fk_ator
+INNER JOIN filmes ON filmes.cod_filme = filmes_atores.fk_filme
+WHERE filmes.titulo = 'O Lobo';
+
+-- 7  - Obter o endereço completo de um cliente específico.
+
+SELECT enderecos.logradouro, enderecos.tipo_log, enderecos.complemento, enderecos.cidade, enderecos.uf, enderecos.cep, enderecos.numero, enderecos.bairro
+FROM cli_enderecos
+INNER JOIN clientes ON cli_enderecos.fk_cli = clientes.cod_cli
+INNER JOIN enderecos ON cli_enderecos.fk_end = enderecos.cod_end
+WHERE cli_enderecos.fk_cli = 10
+
+-- 8 - Listar todos os filmes e seus respectivos gêneros e categorias.
+
+SELECT filmes.titulo, generos.nome, categorias.nome FROM filmes
+INNER JOIN generos ON filmes.fk_gen = generos.cod_gen
+INNER JOIN categorias ON filmes.fk_cat = categorias.cod_cat
+
+-- 9  - Mostrar todos os clientes que alugaram um filme específico e a data de locação.
+
+SELECT clientes.nome, locacoes.data_loc FROM locacoes
+INNER JOIN clientes ON locacoes.fk_cli = clientes.cod_cli
+INNER JOIN locacoes_filmes ON locacoes.cod_loc = locacoes_filmes.fk_loc
+INNER JOIN filmes ON locacoes_filmes.fk_filme = filmes.cod_filme
+WHERE filmes.titulo = 'Matrix'
+
+-- 10 - Exibir a lista de clientes com multas superiores a um valor específico.
+
+SELECT clientes.nome FROM clientes
+INNER JOIN locacoes ON locacoes.fk_cli = clientes.cod_cli
+WHERE locacoes.multa > '0.0'
+
+-- 11 - Listar todas as locações feitas em um período específico.
+
+SELECT locacoes.cod_loc FROM locacoes
+INNER JOIN locacoes_filmes ON locacoes.cod_loc = locacoes_filmes.fk_loc
+WHERE locacoes.data_loc > '2021-08-23' and locacoes_filmes.data_devol < '2021-09-01'
+
+-- 12 - Obter a quantidade total de filmes alugados por cada cliente. (DESAFIO)
+
+SELECT clientes.nome, COUNT(locacoes.fk_cli) AS total_locacao FROM clientes
+INNER JOIN locacoes ON locacoes.fk_cli = clientes.cod_cli GROUP BY clientes.nome;
+
+-- 13 - Listar os clientes e os filmes que eles alugaram, ordenados por data de locação.
 
 
+
+SELECT * FROM locacoes
+SELECT * FROM locacoes_filmes
+SELECT * FROM clientes
+SELECT * FROM dependentes
+SELECT * FROM filmes
+SELECT * FROM generos
+SELECT * FROM profissoes
+SELECT * FROM categorias
+SELECT * FROM atores
+SELECT * FROM filmes_atores
+SELECT * FROM enderecos
+SELECT * FROM cli_enderecos
