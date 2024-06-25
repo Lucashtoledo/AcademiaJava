@@ -351,6 +351,28 @@ SELECT clientes.nome, COUNT(locacoes.fk_cli) AS total_locacao FROM clientes
 INNER JOIN locacoes ON locacoes.fk_cli = clientes.cod_cli GROUP BY clientes.nome;
 
 -- 13 - Listar os clientes e os filmes que eles alugaram, ordenados por data de locação.
+SELECT clientes.nome, filmes.titulo FROM clientes
+INNER JOIN locacoes ON locacoes.fk_cli = clientes.cod_cli
+INNER JOIN locacoes_filmes ON locacoes_filmes.fk_loc = locacoes.cod_loc
+INNER JOIN filmes ON locacoes_filmes.fk_filme = filmes.cod_filme
+ORDER BY locacoes.data_loc
+
+-- 14 - Mostrar todos os clientes que moram em uma cidade específica e que alugaram filmes de uma categoria específica.
+SELECT clientes.nome FROM clientes
+INNER JOIN locacoes ON locacoes.fk_cli = clientes.cod_cli
+INNER JOIN locacoes_filmes ON locacoes_filmes.fk_loc = locacoes.cod_loc
+INNER JOIN filmes ON locacoes_filmes.fk_filme = filmes.cod_filme
+INNER JOIN cli_enderecos ON cli_enderecos.fk_cli = clientes.cod_cli
+INNER JOIN enderecos ON enderecos.cod_end = cli_enderecos.fk_end
+WHERE enderecos.cidade = 'Rio de Janeiro' AND filmes.titulo = 'Avatar'
+
+-- 15 - Encontrar todos os atores que participaram de pelo menos 5 filmes, listando o nome do ator e o número de filmes em que atuou.
+SELECT atores.nome, COUNT(DISTINCT filmes_atores.fk_filme) AS filmes FROM atores
+INNER JOIN filmes_atores ON filmes_atores.fk_ator = atores.cod_ator
+GROUP BY atores.nome
+HAVING COUNT(DISTINCT filmes_atores.fk_filme) > 5
+
+-- 16 - Exibir a quantidade total de filmes alugados por categoria e gênero, incluindo apenas as categorias e gêneros que têm mais de 5 filmes alugados no total (DESAFIO)
 
 
 
