@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 1</title>
+
+    <script>
+        function mudarCorFundo(element){
+            var cor = element.id;
+
+            if(cor === "vermelho"){
+                document.body.style.backgroundColor = "red";
+            }else if(cor === "verde"){
+                document.body.style.backgroundColor = "green";
+            }else if(cor === "azul"){
+                document.body.style.backgroundColor = "blue";
+            }else if(cor === "amarelo"){
+                document.body.style.backgroundColor = "yellow";
+            }
+        }
+    </script>
+</head>
+<body>
+    <button  id="vermelho" onclick="mudarCorFundo(this)">Vermelho</button><br>
+    <button  id="verde" onclick="mudarCorFundo(this)">Verde</button><br>
+    <button  id="azul" onclick="mudarCorFundo(this)">Azul</button><br>
+    <button  id="amarelo" onclick="mudarCorFundo(this)">Amarelo</button><br>
+</body>
+</html>

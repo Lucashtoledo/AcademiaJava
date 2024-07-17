@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicio 2</title>
+
+    <script>
+        function mudarCorFundo(element){
+            var cor = element.id;
+
+            if(cor === "red"){
+                document.body.style.backgroundColor = cor;
+            }else if(cor === "green"){
+                document.body.style.backgroundColor = cor;
+            }else if(cor === "blue"){
+                document.body.style.backgroundColor = cor;
+            }else if(cor === "yellow"){
+                document.body.style.backgroundColor = cor;
+            }
+        }
+    </script>
+
+    <style>
+        a {
+            text-decoration: none;
+            color: black;     
+        }
+    </style>
+</head>
+<body>
+    <a href="" id="red" onmouseover="mudarCorFundo(this)">Vermelho</a><br>
+    <a href="" id="green" onmouseover="mudarCorFundo(this)">Verde</a><br>
+    <a href="" id="blue" onmouseover="mudarCorFundo(this)">Azul</a><br>
+    <a href="" id="yellow" onmouseover="mudarCorFundo(this)">Amarelo</a><br>
+</body>
+</html>
