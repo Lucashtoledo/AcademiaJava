@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkbox Form</title>
+    <script>
+        function checkSelection() {
+            const checkboxes = document.querySelectorAll('input[name="item"]:checked');
+            const submitButton = document.getElementById('submitButton');
+            submitButton.disabled = checkboxes.length < 2;
+        }
+    </script>
+</head>
+<body>
+    <form id="itemForm">
+        <label>
+            <input type="checkbox" name="item" value="item1" onclick="checkSelection()"> Item 1
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="item" value="item2" onclick="checkSelection()"> Item 2
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="item" value="item3" onclick="checkSelection()"> Item 3
+        </label>
+        <br>
+        <button type="button" id="submitButton" disabled>Enviar</button>
+    </form>
+
+
+</body>
+</html>

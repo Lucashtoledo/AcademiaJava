@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Troca de Cor</title>
+    <script>
+        function changeTextColor(color) {
+            document.getElementById('paragrafo').style.color = color;
+        }
+
+        function changeBackgroundColor(color) {
+            document.getElementById('paragrafo').style.backgroundColor = color;
+        }
+    </script>
+</head>
+<body>
+    <div id="controls">
+        <button onclick="changeTextColor('white')">Fonte Branca</button>
+        <button onclick="changeTextColor('black')">Fonte Preta</button>
+        <button onclick="changeBackgroundColor('white')">Fundo Branco</button>
+        <button onclick="changeBackgroundColor('black')">Fundo Preto</button>
+    </div>
+    
+    <p id="paragrafo">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut explicabo tempora placeat labore nostrum culpa adipisci quo veritatis vero voluptas, iste perspiciatis dolore vel! Pariatur tenetur quas ab id eos.</p>
+</body>
+</html>

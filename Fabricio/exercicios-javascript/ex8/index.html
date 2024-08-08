@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alterar Cor e Tamanho da Fonte</title>
+    <style>
+        #paragrafo {
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div id="controls">
+        <button onclick="changeTextColor('white')">Fonte Branca</button>
+        <button onclick="changeTextColor('black')">Fonte Preta</button>
+        <button onclick="changeBackgroundColor('white')">Fundo Branco</button>
+        <button onclick="changeBackgroundColor('black')">Fundo Preto</button>
+        <br>
+        <button onclick="changeFontSize('increase')">+</button>
+        <button onclick="changeFontSize('decrease')">-</button>
+        <br>
+        <button onclick="transformText('uppercase')">Maiúsculas</button>
+        <button onclick="transformText('lowercase')">Minúsculas</button>
+    </div>
+    
+    <p id="paragrafo">Este é um parágrafo com um texto qualquer.</p>
+
+    <script>
+        function changeTextColor(color) {
+            document.getElementById('paragrafo').style.color = color;
+        }
+
+        function changeBackgroundColor(color) {
+            document.getElementById('paragrafo').style.backgroundColor = color;
+        }
+
+        function changeFontSize(action) {
+            const paragraph = document.getElementById('paragrafo');
+            let currentSize = parseFloat(window.getComputedStyle(paragraph, null).getPropertyValue('font-size'));
+            
+            if (action === 'increase') {
+                currentSize += 2;
+            } else if (action === 'decrease') {
+                currentSize -= 2;
+            }
+
+            paragraph.style.fontSize = currentSize + 'px';
+        }
+
+        function transformText(action) {
+            const paragraph = document.getElementById('paragrafo');
+            if (action === 'uppercase') {
+                paragraph.style.textTransform = 'uppercase';
+            } else if (action === 'lowercase') {
+                paragraph.style.textTransform = 'lowercase';
+            }
+        }
+    </script>
+</body>
+</html>
